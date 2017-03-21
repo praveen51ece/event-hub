@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta name="csrf_token" content="{{ csrf_token }}">
+<link href="/static/css/datepicker.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--<script src="/static/assets/admin/pages/scripts/components-pickers.js"></script>-->
+<script src="/static/js/bootstrap-datepicker.js"></script>
+<script>
+function submit()() {
+	document.getElementById("demo").innerHTML = "Successfull";
+}
+$(document).ready(function() {
+	jQuery('#event_date').datepicker({
+	        allowInputToggle: true,
+	        format: "dd/mm/yyyy",
+	        startDate: "{{current_date|date:'d-m-Y'}}",
+	        endDate: '+2y',
+	        autoclose:true
+    }).on('focus',function () {
+          $(this).datepicker('show');
+      });
+	$('#event_date').keypress(function(e){
+    	$(this).datepicker('show');
+	});	
+});
+	
+</script>
+
+</head>
+<body bgcolor="pink">
+	<form name="myform" action="{% url 'event_insert' %}" method="POST">
+		
+	{% csrf_token %}
+	 <center>
+	 	<h2> Enter Event Details</h2><br><br>
+	 	Event Name :<input  type="text" name="event_name" maxlength="50" /><br><br>
+	 	Event Location :<input  type="text" name="event_location" maxlength="80"/><br><br>
+		Event Date :<input name="event_date" data-parsley-date placeholder="yyyy-mm-dd" value="" class="form-control" id="event_date" maxlength="10" required><br><br>
+		Entry Fee :<input type="text" name="event_entryfee" required/><br><br>
+		Discription :<input type="text" name="event_discription" required/><br>
+		<input type="submit" value="submit" onclick="submit()"/>
+		<p id="demo"></p>
+	 </center>
+	</form>
+</body>
+</html>
+

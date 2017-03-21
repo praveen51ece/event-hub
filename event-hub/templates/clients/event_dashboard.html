@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+    <script src="/static/js/event.js"></script>
+    <link href="/static/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="/static/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <style media="screen">
+        a:hover {
+            background-color: yellow;
+        }
+        
+        h2 {
+            color: green;
+        }
+        
+        .drop {
+            position: absolute;
+            width: 3;
+            filter: flipV(), flipH();
+            font-size: 40;
+            color: blue
+        }
+
+        .table_design {
+            background: #FFFFFF; /* #FAFAFA */
+            width:90%;
+            position: relative; 
+            margin:-13px auto 0 auto;
+            padding: 2px 0px 0px 0px;   
+            border-bottom:2px solid #CC0000;
+            box-shadow: 0px 4px 5px #AAAAAA;
+            font-size:14px;
+            font-family: 'Lato Regular', Arial;
+            text-transform:uppercase;
+            text-align:center;
+            }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // $('#example').dataTable({"sPaginationType": "full_numbers"});
+            var iTableCounter = 1;
+            var oTable;
+            var oInnerTable;
+            var TableHtml;
+            $('#exampleTable').dataTable( {
+                 "order": [[ 4, "asc" ]]
+            });            
+        });        
+</script>
+    <title> Client Lists </title>
+    <br><br>
+
+
+
+
+</head>
+<body bgcolor="#F0D1EB" >
+    <!--login modal-->
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Login</h1>
+      </div>
+      <div class="modal-body">          
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" id="username" name="username"  placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" name="password" id="password" placeholder="Password">
+            </div>
+            <span id='login_error' style="display:none;color:red"> Userid or Password Wrong</span>
+            <div class="form-group">
+              <button type="button" onclick="UserLogin()" class="btn btn-primary btn-lg btn-block">Login</button>
+
+            </div>        
+      </div>      
+      <div class="modal-footer">
+              <button type="button" data-dismiss="modal" aria-hidden="true" class="close">close</button>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+<a href="{% url 'user_insert' %}" target="_blank">Registration</a>
+<div align="right">    
+<a href="" class="" data-toggle="modal" data-target="#loginModal" >Log In / Sign Up</a>
+</div>
+<br>
+
+
+<div  class="table_design">
+    <center>
+        <h2>Event Lists </h2>
+        <table  id="exampleTable">
+            <thead>
+                <tr>
+                    <th>Event No.</th>
+                    <th>Event Name</th>
+                    <th>Event Location</th>
+                    <th>Event Date</th>
+                    <th>Entry Fee</th>
+                    <th>Discription</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ event.eve_name }}</a> </td>
+                    <td>{{ event.eve_location }}</td>
+                    <td>{{ event.eve_date}}</td>
+                    <td>{{ event.eve_entry_fee}}</td>
+                    <td> <a href="#">View Detais</a></td>                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!--<a href="{% url 'event_insert' %}" target="_blank">Add New Event</a> <br><br>-->
+    </center>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta name="csrf_token" content="{{ csrf_token }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="/static/assets/admin/pages/scripts/components-pickers.js"></script>
+
+<script>
+	function submit()() {
+		document.getElementById("demo").innerHTML = "Successfull";
+		}
+</script>
+
+</head>
+<body bgcolor="pink">
+	<form name="myform" action="{% url 'user_insert' %}" method="POST">
+		
+	{% csrf_token %}
+	 <center>
+	 	<h2> Enter user Details</h2><br><br>
+	 	Name :<input  type="text" name="use_name" maxlength="50" /><br><br>
+	 	User Id :<input  type="text" name="use_login_id" maxlength="10" /><br><br>
+	 	Mobile :<input  type="text" name="use_mobile" maxlength="12"/><br><br>
+		Email:<input type="text" name="use_email" required/><br><br>
+		Address :<input type="text" name="use_Address"/><br><br>
+		Password :<input type="Password" name="use_password"/><br>
+
+		<input type="submit" value="submit" onclick="submit()"/>
+		<p id="demo"></p>
+	 </center>
+	</form>
+</body>
+</html>
+
+
+
+
